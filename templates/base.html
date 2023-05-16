@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0px;
+            margin: 0%;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            color: white;
+            background-color: #393646;
+        }
+
+        .title-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .title {
+            font-size: 2rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .button-57 {
+            position: relative;
+            border-radius: 0.1rem;
+            overflow: hidden;
+            width: max-content;
+            border: 1px solid #18181a;
+            color: #18181a;
+            display: inline-block;
+            font-size: 15px;
+            line-height: 15px;
+            padding: 18px 18px 17px;
+            text-decoration: none;
+            cursor: pointer;
+            background: white;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .button-57 span:first-child {
+            position: relative;
+            transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
+            z-index: 10;
+        }
+
+        .button-57 span:last-child {
+            color: white;
+            display: block;
+            position: absolute;
+            bottom: 0;
+            transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
+            z-index: 100;
+            opacity: 0;
+            top: 50%;
+            left: 50%;
+            transform: translateY(225%) translateX(-50%);
+            height: 14px;
+            line-height: 13px;
+        }
+
+        .button-57:after {
+            content: "";
+            position: absolute;
+            bottom: -50%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            transform-origin: bottom center;
+            transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
+            transform: skewY(9.3deg) scaleY(0);
+            z-index: 50;
+        }
+
+        .button-57:hover:after {
+            transform-origin: bottom center;
+            transform: skewY(9.3deg) scaleY(2);
+        }
+
+        .button-57:hover span:last-child {
+            transform: translateX(-50%) translateY(-100%);
+            opacity: 1;
+            transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+        }
+
+        /* chatting page */
+
+        .chatting-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 1rem;
+            min-height: 100vh;
+            color: white;
+            background-color: #393646;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .column {
+            flex-direction: column;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .demo {
+            gap: 1rem;
+        }
+
+        .demo>p:first-of-type {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .demo>span:last-of-type {}
+
+        .demo>span:last-of-type>p {
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 0.3rem;
+        }
+
+        .gap {
+            gap: 2rem;
+        }
+
+        .svg {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .input-container {
+            display: flex;
+            width: 100%;
+            max-width: 60rem;
+            background-color: #2A2438;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            color: white;
+        }
+
+        .input-container>input {
+            width: 100%;
+            color: white;
+            font-size: 1.1rem;
+            border: none;
+            background-color: transparent;
+        }
+
+        .input-container>input:focus {
+            border: none;
+            outline: none;
+        }
+
+        .justify-around {
+            justify-content: space-around;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+        }
+
+        .dataspan {
+            display: flex;
+            width: 100%;
+            max-width: 60rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background-color: #2A2438;
+            font-size: 1.1rem;
+        }
+        .output{
+            font-weight: 100;
+        }
+    </style>
+</head>
+
+<body>
+    {% block content %}
+
+    {% endblock content %}
+</body>
+
+</html>

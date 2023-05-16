@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<span class="chatting-container column justify-around">
+    <span class="flex column justify-center items-center">
+        <p class="title">AI Chatbot for College Inquiry</p>
+
+        <span class="flex gap">
+            <span class="demo">
+                <p class="flex items-center justify-center column">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6 svg">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                    </svg>
+                    Examples
+                </p>
+
+                <span class="flex column">
+                    <p>What is the basis for admission in RCOEM?</p>
+
+                    <p>Which programmes are offered by RCOEM?</p>
+                </span>
+            </span>
+
+            <span class="demo">
+                <p class="flex items-center justify-center column">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6 svg">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                    </svg>
+                    Limitations
+                </p>
+
+                <span class="flex column">
+                    <p>May occasionally generate incorrect information</p>
+
+                    <p>Limited knowledge of college</p>
+                </span>
+            </span>
+        </span>
+    </span>
+
+    {% if answer %}
+    <span id="dataSpan" class="dataspan">
+        <span class="answer" style="display: flex; align-items: center;
+        justify-content: center; gap: 0.5rem;" id="answer">
+            Bot:
+            <p class="output">
+                {{ answer }}
+            </p>
+        </span>
+    </span>
+    {% endif %}    
+
+    <form action="" method="POST" class="input-container" id="form">
+        {% csrf_token %}
+        <input value="" id="inputTag" name="question" type="text" placeholder="Ask a question ...">
+        <button style="background-color: transparent; border: none; color: white;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6 svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+            </svg>
+        </button>
+    </form>
+</span>
+
+{% endblock content %}
