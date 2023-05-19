@@ -24,3 +24,6 @@ urlpatterns = [
     path('', home_screen_view, name='home'),
     path('chat/' , chating_page, name='chat')
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
