@@ -1,11 +1,19 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
-
+{% if user.is_authenticated %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" integrity="sha512-77kidyGDJGWWmJ0MVO0CRp+6nRgZRK67frUVBRvnL1zCcmcw9FkCQxpDHq52SebW+KWTAnnuX0Qk2/MQWogWoQ==" crossorigin="anonymous" />
 <span class="chatting-container column justify-around">
+    <div class="containerone">  
+      <div class="profil-img"><div style="display:inline-block; position: relative; left:5rem;top:0.6rem;font-size: 1.5rem; width: 150px;">Chat with<br><span  style="font-size: 1.1rem;">College AI</span></div>
+    </div>
+      
+       <div ><a href="/logout"  style="color:white;font-size: 20px;text-decoration: none;">Logout&nbsp;&nbsp;<i class="fa fa-sign-out" style="color:white;font-size: 20px;"></i></a></div>
+    </div>
     <span class="flex column justify-center items-center">
-        <p class="title">AI Chatbot for College Inquiry</p>
-
+        <p class="title">Chatbot for Islamia College Inquiry</p>
+        <!-- {{ request.session.username }} -->
         <span class="flex gap">
             <span class="demo">
                 <p class="flex items-center justify-center column">
@@ -18,9 +26,9 @@
                 </p>
 
                 <span class="flex column">
-                    <p>What is the basis for admission in RCOEM?</p>
+                    <p>What is the basis for admission in ICSC?</p>
 
-                    <p>Which programmes are offered by RCOEM?</p>
+                    <p>Which programmes are offered by ICSC?</p>
                 </span>
             </span>
 
@@ -58,7 +66,7 @@
     <form action="" method="POST" class="input-container" id="form">
         {% csrf_token %}
         <input value="" id="inputTag" name="question" type="text" placeholder="Ask a question ...">
-        <button style="background-color: transparent; border: none; color: white;">
+        <button style="background-color: transparent; border: none; color: black;" id="send">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6 svg">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -68,4 +76,11 @@
     </form>
 </span>
 
+{% else %}
+<script>
+    window.location = "/";
+</script>
+
+
+{% endif %}
 {% endblock content %}
