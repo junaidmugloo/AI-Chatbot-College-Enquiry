@@ -3,18 +3,119 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+<style>
+    .boxx{
+    overflow-y:scroll; 
+    overflow-x: hidden;
+ 
+    width: 80%; height:300px;
+    margin-bottom: 100px;
+    }
+    ::-webkit-scrollbar{
+        background-color: aliceblue;
+        border: none;
+        width: 5px;
+        border-radius:10px;
+    }
+    ::-webkit-scrollbar-button{
+        background-color: gray;
+    }
+
+
+
+
+
+
+
+
+
+.new{
+
+   position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0.5rem;
+  animation: loading 2.5s ease-in-out infinite;
+  
+}
+
+
+@keyframes loading {
+  0%,
+  100% {
+    transform: scale(0.2);
+    background-color: #0ddcf8;
+  }
+  42% {
+    background-color: #5d4da6;
+  }
+  50% {
+    transform: scale(1);
+    background-color: #42b58fb8;
+  }
+}
+
+
+
+/* ^ bad pract */
+.one{
+  animation-delay:0.0s;
+}
+.two{
+  animation-delay:0.2s;
+}
+.three{
+  animation-delay:0.4s;
+}
+.four{
+  animation-delay:0.8s;
+}
+.five{
+  animation-delay:1.0s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" integrity="sha512-77kidyGDJGWWmJ0MVO0CRp+6nRgZRK67frUVBRvnL1zCcmcw9FkCQxpDHq52SebW+KWTAnnuX0Qk2/MQWogWoQ==" crossorigin="anonymous" />
-<span class="chatting-container column justify-around">
+
+<div class="new" id="hell" style="display: flex;">
+
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+    <div class="four"></div>
+    <div class="five"></div>
+
+</div>
+
+
+<span class="chatting-container column justify-around" id="cont">
     <div class="containerone">  
-      <div class="profil-img"><div style="display:inline-block; position: relative; left:5rem;top:0.6rem;font-size: 1.5rem; width: 150px;">Chat with<br><span  style="font-size: 1.1rem;">College AI</span></div>
+      <div class="profil-img"><div style="display:inline-block; position: relative; left:5rem;top:0.6rem;font-size: 1.5rem; width: 150px;">Chat with<br><span  style="font-size: 1.1rem;">Campus AI</span></div>
     </div>
       
        <div ><a href="/logout"  style="color:white;font-size: 20px;text-decoration: none;">Logout&nbsp;&nbsp;<i class="fa fa-sign-out" style="color:white;font-size: 20px;"></i></a></div>
     </div>
     <span class="flex column justify-center items-center">
-        <p class="title">Chatbot for Islamia College Inquiry</p>
+        <p class="title">Campus AI for Islamia College Inquiry</p>
         <!-- {{ request.session.username }} -->
-        <span class="flex gap">
+        <span class="flex gap" id="lim">
             <span class="demo">
                 <p class="flex items-center justify-center column">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -31,6 +132,21 @@
                     <p>Which programmes are offered by ICSC?</p>
                 </span>
             </span>
+
+
+           
+
+
+
+
+
+
+
+
+
+
+
+
 
             <span class="demo">
                 <p class="flex items-center justify-center column">
@@ -50,22 +166,37 @@
             </span>
         </span>
     </span>
+  
+    <div id="dataSpan2"   >
 
-    {% if answer %}
+    </div>
+  
+
+ 
+
+
+
+   
+
+
+
+
+  {% if answer %}
     <span id="dataSpan" class="dataspan">
         <span class="answer" style="display: flex; align-items: center;
         justify-content: center; gap: 0.5rem;" id="answer">
             Bot:
-            <p class="output">
+            <p class="output" id="anx">
                 {{ answer }}
             </p>
         </span>
     </span>
-    {% endif %}    
+    {% endif %}  
+    
 
-    <form action="" method="POST" class="input-container" id="form">
+    <form action="" method="POST" class="input-container" id="form"style="position:fixed; top:40rem" >
         {% csrf_token %}
-        <input value="" id="inputTag" name="question" type="text" placeholder="Ask a question ...">
+        <input value=""  onkeyup="tex()" id="inputTag" required name="question" type="text" placeholder="Ask a question ...">
         <button style="background-color: transparent; border: none; color: black;" id="send">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6 svg">
@@ -75,10 +206,84 @@
         </button>
     </form>
 </span>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    document.getElementById("hell").style.display="none";
+      $("#form").submit(function(e) {
+        document.getElementById("hell").style.display="block";
+        document.getElementById("lim").style.display="none";
+       document.getElementById('cont');
+       document.getElementById("send").style.display="none";
+       document.getElementById("inputTag").value="";
+    e.preventDefault();
+    $.ajax({
+    type: "POST",
+    url: "http://127.0.0.1:8000/chat/",
+    data:$('#form').serialize(),
+    success: function (rooms) { 
+       
+      
+        document.getElementById("hell").style.display="none";
+        var success =  $($.parseHTML(rooms)).find("#anx"); 
+        var quest= document.getElementById("inputTag").value;
+        
+        var z='<span class="answer dataspan" style="display: flex; align-items: center;background-color:grey; width:80vw; justify-content: center; gap: 0.5rem;">Query:<p class="output" >'+quest+'</p></span><br>';
+        document.getElementById("dataSpan2").innerHTML+=z;
+        
+       
+        
+      
+        
+      
+        document.getElementById('dataSpan2').classList.add('boxx');
+        var y='<span class="answer dataspan" style="display: flex; align-items: center; width:80vw; justify-content: center; gap: 0.5rem;">Campus AI:<p class="output" >'+success[0].innerHTML+'</p></span><br>';
+        
+        document.getElementById("dataSpan2").innerHTML+=y;
+        
+         $("#form").trigger("reset");
+         document.getElementById("send").style.display="block";
+       
+       
+       
+      
+       
+       
+       
+       
+       
+       
+       
+       
+        //console.log(success[0].innerHTML)
+       // console.log()
+       //$("#dataSpan2").innerHTML=rooms;
+    }
+})
+    });
 
+    document.getElementById("send").style.display="none";
+
+function tex()
+{
+    if(document.getElementById('inputTag').value=="")
+    {
+        document.getElementById("send").style.display="none";
+    }
+    else{
+        document.getElementById("send").style.display="block";
+    }
+   
+
+}
+</script>
 {% else %}
+
 <script>
     window.location = "/";
+
+
+  
+
 </script>
 
 

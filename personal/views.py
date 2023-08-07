@@ -55,7 +55,7 @@ def login(request):
             #username1=user.username;
             #return render(request,"personal/chatting.html",{'uname':username1})
             request.session['username'] = user.username;
-            return redirect('/chat')   
+            return redirect('/chat/')   
         else:
             messages.info(request,"Invalid Credentials")
             return redirect('/')
